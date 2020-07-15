@@ -9,8 +9,9 @@ module.exports = {
     
                 const data = await service.find(cep);
 
-                // todo(bkkater): validate if correios retrieve some valid data, otherwise redirect for another service.
-                // ex: res.redirect('/cep/another-some-public-api/:cep');
+                if(data.erro){
+                    res.redirect(`/cep/backapp/${cep}`)
+                }
 
                 res.status(200).json(data);
 
